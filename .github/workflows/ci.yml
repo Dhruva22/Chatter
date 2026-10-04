@@ -1,0 +1,15 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cp .env.example .env
+      - run: docker compose build
+      - run: docker compose run --rm web ruff check .
+      - run: docker compose run --rm web pytest
