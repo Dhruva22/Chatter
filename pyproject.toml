@@ -1,0 +1,30 @@
+[project]
+name = "chatter"
+version = "0.1.0"
+description = "Chatter is twitter like news feed app where user can follow other userts and can also view feeds of all the users in connection."
+readme = "README.md"
+requires-python = ">=3.14.7"
+dependencies = [
+    "django>=6.1.1",
+    "django-environ>=0.14.0",
+    "djangorestframework>=3.18.1",
+    "psycopg[binary]>=3.3.6",
+]
+
+[project.scripts]
+chatter = "chatter:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-django>=4.14.0",
+    "ruff>=0.16.10",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+python_files = ["test_*.py"]
